@@ -1,18 +1,25 @@
-1. COS 226, f25, precept 1. Tìm bug
-    Hãy xem cài đặt không chính xác sau đây của hàm union() trong cấu trúc dữ liệu quick-find. 
-    Lưu ý rằng mảng leader[] có độ dài n được khởi tạo với leader[i] = i cho mọi i, và hàm find(i) trả về giá trị leader[i].
-    Hãy một giá trị cho số lượng phần tử n, 
-    một chuỗi các phép toán union(), một số nguyên 0 ≤ i < n và một số nguyên 0 ≤ j < n, sao cho các phần tử i và j thuộc cùng một tập hợp nhưng  find(i) và find(j) trả về các giá trị khác nhau. Nói cách khác là tìm 1 testcase mà cài đặt trên chạy sai.
-    ```
+1 . COS 226, f25, precept 1. Tìm bug
+
+Hãy xem cài đặt không chính xác sau đây của hàm union() trong cấu trúc dữ liệu quick-find. 
+   
+Lưu ý rằng mảng leader[] có độ dài n được khởi tạo với leader[i] = i cho mọi i, và hàm find(i) trả về giá trị leader[i].
+   
+Hãy một giá trị cho số lượng phần tử n, 
+   
+một chuỗi các phép toán union(), một số nguyên 0 ≤ i < n và một số nguyên 0 ≤ j < n, sao cho các phần tử i và j thuộc cùng một tập hợp nhưng  find(i) và find(j) trả về các giá trị khác nhau. Nói cách khác là tìm 1 testcase mà cài đặt trên chạy sai.
+   
+ ```
     public void union(int p, int q){
     {
         for (int i = 0; i < leader.length; i++)
             if(leader[i] == leader[p])
                 leader[i]=leader[q];
     }
-    ```
+   ```
     Tìm 1 testcase mà code trên chạy sai.
+
             LỜI GIẢI :
+
     Ta thấy trong đoạn code trên, giá trị của `leader[p]` không dược lưu ở một biến tạm thời độc lập khác trước khi vòng lặp diễn ra.
     Do đó khi duyệt các chỉ số 'i' mà khi ấy `i=p` thì câu lệnh `leader[p]=leader[q]` sẽ khiến giá trị của leader[p] đổi. khi đó các giá trị ở phía sau mảng mà trước đó cùng nhánh với p sẽ không được gán vào q dẫn tới sai lệch kết quả.
     Vì vậy ở các lần so sánh sau 'leader[i]==leader[p]` sẽ trở nên vô giá trị.
