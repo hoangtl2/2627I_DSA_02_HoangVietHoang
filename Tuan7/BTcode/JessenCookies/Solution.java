@@ -29,7 +29,7 @@ public class Solution {
         if (!pq.isEmpty() && pq.peek() >= K) {
             System.out.println(operations);
         } else {
-            System.out.println(-1); 
+            System.out.println(-1);
         }
     }
 }
